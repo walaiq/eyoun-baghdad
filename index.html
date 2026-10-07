@@ -148,7 +148,7 @@ footer{background:#0A2A35;color:#B8C6C9;padding:40px 20px calc(110px + env(safe-
 .copy.done{background:var(--green);border-color:var(--green);color:#fff}
 .note{margin-top:22px;background:#fff;border-right:5px solid var(--gold);border-radius:14px;padding:18px 22px;line-height:1.9}
 .seg{display:flex;gap:8px;flex-wrap:wrap}
-.seg button{flex:1;min-height:46px;border-radius:12px;border:1.5px solid #C9BBA2;background:#fff;font:inherit;font-weight:700;color:var(--teal);cursor:pointer;padding:0 10px}
+.seg button{flex:1;white-space:nowrap;min-height:46px;border-radius:12px;border:1.5px solid #C9BBA2;background:#fff;font:inherit;font-weight:700;color:var(--teal);cursor:pointer;padding:0 10px}
 .seg button.on{background:var(--teal);color:var(--sand);border-color:var(--teal)}
 .result{border-radius:16px;padding:16px 18px;line-height:1.8;background:#fff}
 .result.bad{background:#FBE3E0;color:#8E2A20}
@@ -156,6 +156,48 @@ footer{background:#0A2A35;color:#B8C6C9;padding:40px 20px calc(110px + env(safe-
 .stores{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media(max-width:520px){.stores{grid-template-columns:1fr}}
 .btn[aria-disabled=true]{opacity:.45;pointer-events:none}
+
+.bk{padding:70px 0 80px;background:var(--sand2)}
+.bk-head{text-align:center;margin-bottom:28px}
+.bk-head h2{margin:0}
+.bk-head p{margin:8px 0 0;color:var(--muted);font-size:17px}
+.bk-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:24px;align-items:start}
+@media(max-width:900px){.bk-grid{grid-template-columns:1fr}}
+.cal{background:#fff;border-radius:24px;padding:20px}
+.cal-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.cal-top b{font-size:24px;color:var(--teal)}
+.cal-nav{width:44px;height:44px;border-radius:50%;border:0;background:var(--teal);color:var(--sand);font-size:24px;cursor:pointer}
+.cal-nav:disabled{opacity:.3;cursor:default}
+.cal-wd,.cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cal-wd span{text-align:center;font-size:13px;color:var(--muted);font-weight:700;padding-bottom:4px}
+.day{position:relative;height:66px;border-radius:12px;overflow:hidden;border:1.5px solid #E2D7C3;display:flex;flex-direction:column;background:#fff}
+.day.empty{border:0;background:transparent}
+.day.past{opacity:.35}
+.day .num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:17px;color:var(--teal);pointer-events:none;z-index:2}
+.day.hol .num{color:#C8463A}
+.day.today{border-color:var(--teal)}
+.half{flex:1;border:0;padding:0;margin:0;background:#fff;cursor:pointer;font:inherit}
+.half.am{border-bottom:1px dashed #E2D7C3}
+.half.am{background:linear-gradient(#FFFBF1,#FFFBF1)}
+.half.pm{background:#F1F5F6}
+.half:hover:not(:disabled){background:#FBEFD3}
+.half.sel{background:var(--gold)!important}
+.half.busy{background:repeating-linear-gradient(45deg,#E7B3AC 0 6px,#F3D2CD 6px 12px)!important;cursor:not-allowed}
+.half:disabled{cursor:not-allowed}
+.day.busyall .num{color:#8E2A20}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;font-size:14px;color:var(--muted)}
+.legend i{display:inline-block;width:16px;height:16px;border-radius:5px;vertical-align:-3px;margin-left:6px;border:1px solid #E2D7C3}
+.lg-free{background:#fff}.lg-sel{background:var(--gold)}.lg-busy{background:repeating-linear-gradient(45deg,#E7B3AC 0 4px,#F3D2CD 4px 8px)}.lg-hol{background:#fff;border-color:#C8463A!important}
+.cal-hint{margin:12px 0 0;font-size:14px;line-height:1.8;color:var(--muted)}
+.picked{background:var(--teal);color:var(--sand);border-radius:14px;padding:12px 16px;font-weight:700;line-height:1.7}
+.picked.none{background:#fff;color:var(--muted);font-weight:500;border:1.5px dashed #C9BBA2}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two>div{display:flex;flex-direction:column;gap:8px}
+@media(max-width:520px){.two{grid-template-columns:1fr}}
+.warn{background:#FFF1D6;border:1.5px solid var(--gold);border-radius:12px;padding:12px 14px;line-height:1.7}
+.small{margin:0;font-size:14px;color:var(--muted);line-height:1.7}
+.small.err{color:#8E2A20}.small.ok{color:var(--green);font-weight:700}
+input.bad{border-color:#C8463A!important}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
@@ -168,7 +210,7 @@ footer{background:#0A2A35;color:#B8C6C9;padding:40px 20px calc(110px + env(safe-
 عيون بغداد
 </a>
 <div class="links">
-<a href="#features">المرافق</a><a href="#pool">المسابح</a><a href="#house">البيت</a><a href="#shifts">الأسعار</a><a href="#payment">الدفع</a><a href="#gallery">الصور</a><a href="#location">الموقع</a>
+<a href="#book">الحجز</a><a href="#features">المرافق</a><a href="#pool">المسابح</a><a href="#house">البيت</a><a href="#shifts">الأسعار</a><a href="#payment">الدفع</a><a href="#gallery">الصور</a><a href="#location">الموقع</a>
 </div>
 <a class="btn btn-gold phone" href="tel:07747982110">0774 798 2110</a>
 </nav>
@@ -193,6 +235,43 @@ footer{background:#0A2A35;color:#B8C6C9;padding:40px 20px calc(110px + env(safe-
 </div>
 </section>
 
+
+<section class="bk" id="book">
+<div class="wrap">
+<div class="bk-head"><h2 class="kufi">احجز يومك</h2><p>اختار اليوم والشفت من التقويم، واكتب معلوماتك، ويطلعلك السعر مباشرة.</p></div>
+<div class="bk-grid">
+<div class="cal">
+<div class="cal-top">
+<button type="button" class="cal-nav" id="calPrev" aria-label="الشهر السابق">›</button>
+<b class="kufi" id="calTitle"></b>
+<button type="button" class="cal-nav" id="calNext" aria-label="الشهر التالي">‹</button>
+</div>
+<div class="cal-wd"><span>سبت</span><span>أحد</span><span>اثنين</span><span>ثلاثاء</span><span>أربعاء</span><span>خميس</span><span>جمعة</span></div>
+<div class="cal-days" id="calDays"></div>
+<div class="legend">
+<span><i class="lg-free"></i>متاح</span><span><i class="lg-sel"></i>اختيارك</span><span><i class="lg-busy"></i>محجوز</span><span><i class="lg-hol"></i>عطلة</span>
+</div>
+<p class="cal-hint">كل يوم مقسوم نصين: <b>الفوك صباحي</b> (9 ص – 6 م) و<b>الجوه مسائي</b> (8 م – 7 ص). اضغط على النص اللي تريده، أو اختار "يوم كامل".</p>
+</div>
+<form class="form" id="bookForm" novalidate>
+<label>الشفت</label>
+<div class="seg" id="segShift"><button type="button" data-v="day" class="on">☀️ صباحي</button><button type="button" data-v="night">🌙 مسائي</button><button type="button" data-v="full">يوم كامل</button></div>
+<div class="picked" id="picked">اختار يوم من التقويم</div>
+<div class="two">
+<div><label for="n">الاسم</label><input id="n" type="text" placeholder="اسمك الكريم" autocomplete="name"></div>
+<div><label for="ph">رقم الهاتف</label><input id="ph" type="tel" inputmode="tel" placeholder="07XXXXXXXXX" dir="ltr" autocomplete="tel"></div>
+</div>
+<label>نوع المجموعة</label>
+<div class="seg" id="segGroup"><button type="button" data-v="family" class="on">👨‍👩‍👧 عائلة</button><button type="button" data-v="youth">🧑‍🤝‍🧑 شباب</button></div>
+<div class="warn" id="youthWarn" hidden>⚠️ الشباب: أقصى عدد <b>10 أشخاص</b>، وأكثر من هذا العدد ما مسموح.</div>
+<label for="p">عدد الأشخاص</label><input id="p" type="number" min="1" inputmode="numeric" placeholder="اكتب العدد">
+<div class="result" id="result" aria-live="polite"></div>
+<button class="btn btn-wa" type="submit" id="bookBtn">تأكيد الحجز</button>
+<p class="small" id="formMsg" aria-live="polite"></p>
+</form>
+</div>
+</div>
+</section>
 <div class="marquee kufi" aria-hidden="true"><div class="track" id="track"></div></div>
 
 <section class="pad" id="features">
@@ -286,28 +365,7 @@ footer{background:#0A2A35;color:#B8C6C9;padding:40px 20px calc(110px + env(safe-
 </div>
 </section>
 
-<section class="pad book" id="book">
-<img src="images/palm-night.jpg" alt="" loading="lazy">
-<div class="wrap split">
-<div style="display:flex;flex-direction:column;gap:16px">
-<h2 class="kufi" style="margin:0;color:var(--sand);font-size:clamp(36px,5vw,50px)">احجز يومك</h2>
-<p class="lead">اختار نوع المجموعة واليوم والشفت والعدد، ويطلعلك السعر مباشرة. بعدها اضغط زر الحجز ويوصلنا طلبك على الواتساب.</p>
-<a class="btn" href="tel:07747982110" style="align-self:flex-start;border:1.5px solid var(--gold);color:var(--gold);direction:ltr">اتصال: 0774 798 2110</a>
-</div>
-<div class="form">
-<label>نوع المجموعة</label>
-<div class="seg" id="segGroup"><button data-v="family" class="on">عائلة</button><button data-v="youth">شباب</button></div>
-<label>نوع اليوم</label>
-<div class="seg" id="segDay"><button data-v="normal" class="on">يوم عادي</button><button data-v="holiday">عطلة</button></div>
-<label>الشفت</label>
-<div class="seg" id="segShift"><button data-v="day" class="on">نهاري</button><button data-v="night">مسائي</button><button data-v="full">يوم كامل</button></div>
-<label for="p">عدد الأشخاص</label><input id="p" type="number" min="1" inputmode="numeric" placeholder="اكتب العدد">
-<div class="result" id="result" aria-live="polite"></div>
-<a class="btn btn-wa" id="waBook" href="https://wa.me/9647747982110" target="_blank" rel="noopener">إرسال الحجز على واتساب</a>
 
-</div>
-</div>
-</section>
 
 <section class="pad" id="location">
 <div class="wrap split">
@@ -377,7 +435,7 @@ function drawShifts(){
   document.querySelectorAll('#dayType button').forEach(b=>b.classList.toggle('on',b.dataset.t===dayType));
 }
 $('#dayType').addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(b){dayType=b.dataset.t;drawShifts();}});
-$('#shiftGrid').addEventListener('click',e=>{const b=e.target.closest('[data-s]');if(b){setSeg('segShift',b.dataset.s);setSeg('segDay',dayType);}});
+$('#shiftGrid').addEventListener('click',e=>{const b=e.target.closest('[data-s]');if(b){st.shift=b.dataset.s;update();}});
 drawShifts();
 
 // payment
@@ -425,30 +483,114 @@ const Q=[
 ['هل المزرعة موثقة؟','إي، مزرعة عيون بغداد موثقة.'],
 ['الكهرباء والإنترنت شلون؟','كهرباء وإنترنت على مدار 24 ساعة، وأكو دلفري يوصل للمزرعة على مدار 24 ساعة.'],
 ['وين بالضبط موقعكم؟','بغداد — اليوسفية، تبعد 20 دقيقة عن جسر الطابقين. اللوكيشن موجود بزر خرائط Google بقسم الموقع.'],
-['شلون أحجز؟','اختار الشفت والعدد بقسم الحجز واضغط زر الحجز، يوصلنا طلبك على الواتساب. أو اتصل على 07747982110.']
+['شلون أحجز؟','من قسم الحجز بأعلى الصفحة: اختار اليوم والشفت من التقويم، واكتب اسمك ورقمك والعدد، واضغط تأكيد الحجز. الأيام المحجوزة تبين بلون مخطط.']
 ];
 $('#faqList').innerHTML=Q.map(([q,a],i)=>`<details ${i===0?'open':''}><summary>${q}</summary><p>${a}</p></details>`).join('');
 
-// booking calculator
-const sel={segGroup:'family',segDay:'normal',segShift:'day'};
-const NAMES={day:'الشفت النهاري',night:'الشفت المسائي',full:'اليوم الكامل'};
-function setSeg(id,v){sel[id]=v;document.querySelectorAll('#'+id+' button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));calc();}
-['segGroup','segDay','segShift'].forEach(id=>$('#'+id).addEventListener('click',e=>{const b=e.target.closest('[data-v]');if(b)setSeg(id,b.dataset.v);}));
-$('#p').addEventListener('input',calc);
-function calc(){
-  const n=parseInt($('#p').value,10)||0, g=sel.segGroup, base=PRICE[sel.segDay][sel.segShift];
-  const r=$('#result'); let ok=true, html='';
-  if(g==='youth' && n>10){ok=false;html='❌ عذراً، أقصى عدد للشباب <b>10 أشخاص</b>. ما نكدر نستقبل أكثر من هذا العدد.';}
-  else{
-    const extra=(g==='family'&&n>15)?(n-15)*10:0;
-    html=`السعر: <big>${base+extra}</big> ألف دينار<br><span style="font-size:14px;color:var(--muted)">${NAMES[sel.segShift]} · ${sel.segDay==='holiday'?'يوم عطلة':'يوم عادي'}${extra?` · يشمل ${extra} ألف زيادة (10 آلاف عن كل شخص فوق 15)`:''}${g==='youth'?' · الشباب لحد 10 أشخاص':' · العوائل لحد 15 شخص بنفس السعر'}</span>`;
+// ===== booking + calendar =====
+// ضع هنا رابط Google Apps Script بعد ما تسويه (راجع ملف google-script.txt)
+const API='https://script.google.com/macros/s/AKfycbzjREf2cCIlQ7tDdJhPI_VaN0mny9FKyNj0qSYFIuEPyyvufw9jQnyKWLGgH1XEZDHT/exec';
+const HOLIDAYS=[]; // عطل رسمية إضافية بصيغة 'YYYY-MM-DD'
+const NAMES={day:'الشفت الصباحي',night:'الشفت المسائي',full:'اليوم الكامل'};
+const MONTHS=['كانون الثاني','شباط','آذار','نيسان','أيار','حزيران','تموز','آب','أيلول','تشرين الأول','تشرين الثاني','كانون الأول'];
+const WD=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
+let booked={}; // {'2026-10-08':{day:true,night:true}}
+const st={shift:'day',group:'family',date:null};
+const today=new Date();today.setHours(0,0,0,0);
+let view=new Date(today.getFullYear(),today.getMonth(),1);
+const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const isHol=d=>d.getDay()===5||d.getDay()===6||HOLIDAYS.includes(iso(d));
+const isFree=(k,sh)=>{const b=booked[k]||{};return sh==='full'?!(b.day||b.night):!b[sh];};
+
+function drawCal(){
+  $('#calTitle').textContent=MONTHS[view.getMonth()]+' '+view.getFullYear();
+  $('#calPrev').disabled=view<=new Date(today.getFullYear(),today.getMonth(),1);
+  const first=(view.getDay()+1)%7; // week starts Saturday
+  const n=new Date(view.getFullYear(),view.getMonth()+1,0).getDate();
+  let h='';
+  for(let i=0;i<first;i++)h+='<div class="day empty"></div>';
+  for(let d=1;d<=n;d++){
+    const dt=new Date(view.getFullYear(),view.getMonth(),d),k=iso(dt),b=booked[k]||{};
+    const past=dt<today, hol=isHol(dt), selD=st.date===k;
+    const half=(sh,cls,lbl)=>{const busy=!!b[sh];const sel=selD&&(st.shift===sh||st.shift==='full');
+      return `<button type="button" class="half ${cls} ${busy?'busy':''} ${sel?'sel':''}" data-d="${k}" data-sh="${sh}" ${past||busy?'disabled':''} aria-label="${d} ${MONTHS[view.getMonth()]} ${lbl}${busy?' محجوز':''}"></button>`;};
+    h+=`<div class="day ${past?'past':''} ${hol?'hol':''} ${k===iso(today)?'today':''} ${b.day&&b.night?'busyall':''}"><span class="num">${d}</span>${half('day','am','صباحي')}${half('night','pm','مسائي')}</div>`;
   }
-  r.innerHTML=html; r.classList.toggle('bad',!ok);
-  $('#waBook').setAttribute('aria-disabled',String(!ok));
-  const msg=`مرحبا، أريد أحجز بمزرعة عيون بغداد\nالمجموعة: ${g==='family'?'عائلة':'شباب'}\nالعدد: ${n||'-'}\nالشفت: ${NAMES[sel.segShift]} (${sel.segDay==='holiday'?'عطلة':'يوم عادي'})\nالسعر: ${ok?(base+((g==='family'&&n>15)?(n-15)*10:0))+' ألف':'-'}`;
-  $('#waBook').href='https://wa.me/'+WA+'?text='+encodeURIComponent(msg);
+  $('#calDays').innerHTML=h;
 }
-calc();
+$('#calPrev').onclick=()=>{view=new Date(view.getFullYear(),view.getMonth()-1,1);drawCal();};
+$('#calNext').onclick=()=>{view=new Date(view.getFullYear(),view.getMonth()+1,1);drawCal();};
+$('#calDays').addEventListener('click',e=>{const b=e.target.closest('.half');if(!b||b.disabled)return;
+  const k=b.dataset.d, sh=b.dataset.sh;
+  if(st.shift==='full'&&isFree(k,'full')){st.date=k;}
+  else{st.shift=sh;st.date=k;}
+  if(!isFree(st.date,st.shift)){st.shift=sh;}
+  update();});
+
+function setSeg(id,v){document.querySelectorAll('#'+id+' button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));}
+$('#segShift').addEventListener('click',e=>{const b=e.target.closest('[data-v]');if(!b)return;st.shift=b.dataset.v;update();});
+$('#segGroup').addEventListener('click',e=>{const b=e.target.closest('[data-v]');if(!b)return;st.group=b.dataset.v;update();});
+['#p','#n','#ph'].forEach(x=>$(x).addEventListener('input',()=>{$(x).classList.remove('bad');update();}));
+
+function price(){
+  if(!st.date)return null;
+  const [y,m,d]=st.date.split('-').map(Number);const dt=new Date(y,m-1,d);
+  const t=isHol(dt)?'holiday':'normal', n=parseInt($('#p').value,10)||0;
+  const extra=(st.group==='family'&&n>15)?(n-15)*10:0;
+  return {t,base:PRICE[t][st.shift],extra,total:PRICE[t][st.shift]+extra,dt,n};
+}
+function update(){
+  setSeg('segShift',st.shift);setSeg('segGroup',st.group);
+  const n=parseInt($('#p').value,10)||0, youthOver=st.group==='youth'&&n>10;
+  $('#youthWarn').hidden=st.group!=='youth';
+  const pk=$('#picked'), r=$('#result');
+  const clash=st.date&&!isFree(st.date,st.shift);
+  if(!st.date){pk.className='picked none';pk.textContent='اختار يوم من التقويم';}
+  else{const pr=price();pk.className='picked';
+    pk.innerHTML=`${WD[pr.dt.getDay()]} ${pr.dt.getDate()} ${MONTHS[pr.dt.getMonth()]} — ${NAMES[st.shift]}${pr.t==='holiday'?' <span style="color:var(--gold)">(سعر العطلة)</span>':''}`+(clash?'<br><span style="color:#F3B4AC">⛔ هذا الوقت محجوز، اختار وقت ثاني</span>':'');}
+  let ok=!!st.date&&!clash&&!youthOver;
+  if(youthOver){r.className='result bad';r.innerHTML='❌ عذراً، ما نكدر نستقبل أكثر من <b>10 شباب</b>.';}
+  else if(!st.date){r.className='result';r.innerHTML='<span style="color:var(--muted)">السعر يطلع هنا بعد ما تختار اليوم والعدد.</span>';}
+  else{const pr=price();r.className='result';
+    r.innerHTML=`السعر: <big>${pr.total}</big> ألف دينار<br><span style="font-size:14px;color:var(--muted)">${NAMES[st.shift]} ${pr.t==='holiday'?'· يوم عطلة':'· يوم عادي'}${pr.extra?` · يشمل ${pr.extra} ألف زيادة (10 آلاف عن كل شخص فوق 15)`:''}${st.group==='family'?' · العوائل لحد 15 شخص بنفس السعر':''}</span>`;}
+  $('#bookBtn').setAttribute('aria-disabled',String(!ok));
+  drawCal();
+}
+
+async function loadBooked(){
+  if(!API)return;
+  try{const r=await fetch(API+'?action=list&t='+Date.now());const j=await r.json();booked=j.booked||{};update();}catch(e){}
+}
+
+$('#bookForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const msgEl=$('#formMsg');msgEl.className='small';
+  const name=$('#n').value.trim(), phone=$('#ph').value.trim(), n=parseInt($('#p').value,10)||0;
+  const miss=[];
+  if(!st.date)miss.push('اليوم');
+  if(!name){miss.push('الاسم');$('#n').classList.add('bad');}
+  if(!/^0?7\d{9}$/.test(phone.replace(/\s|-/g,''))){miss.push('رقم هاتف صحيح');$('#ph').classList.add('bad');}
+  if(!n){miss.push('العدد');$('#p').classList.add('bad');}
+  if(miss.length){msgEl.className='small err';msgEl.textContent='كمّل: '+miss.join('، ');return;}
+  if(st.group==='youth'&&n>10)return;
+  if(!isFree(st.date,st.shift)){msgEl.className='small err';msgEl.textContent='هذا الوقت محجوز، اختار وقت ثاني.';return;}
+  const pr=price(), grp=st.group==='family'?'عائلة':'شباب';
+  const btn=$('#bookBtn');btn.textContent='جاري الحجز…';btn.setAttribute('aria-disabled','true');
+  if(API){
+    try{
+      const q=new URLSearchParams({action:'book',date:st.date,shift:st.shift,name,phone,group:grp,count:n,price:pr.total});
+      const r=await fetch(API+'?'+q);const j=await r.json();
+      if(!j.ok){booked=j.booked||booked;btn.textContent='تأكيد الحجز';update();msgEl.className='small err';msgEl.textContent='⛔ عذراً، هذا الوقت انحجز قبل شوية. اختار وقت ثاني.';return;}
+      booked=j.booked||booked;
+    }catch(err){btn.textContent='تأكيد الحجز';update();msgEl.className='small err';msgEl.textContent='صار خطأ بالاتصال، جرب مرة ثانية أو راسلنا واتساب.';return;}
+  }
+  const msg=`مرحبا، حجزت بمزرعة عيون بغداد\nالاسم: ${name}\nالهاتف: ${phone}\nاليوم: ${WD[pr.dt.getDay()]} ${st.date}\nالشفت: ${NAMES[st.shift]}\nالمجموعة: ${grp}\nالعدد: ${n}\nالسعر: ${pr.total} ألف دينار`;
+  window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg),'_blank');
+  btn.textContent='تأكيد الحجز';
+  msgEl.className='small ok';msgEl.textContent='✅ انحجز موعدك! ادفع المبلغ بإحدى طرق الدفع وأرسل سكرين التحويل على الواتساب حتى يتثبت.';
+  st.date=null;update();
+});
+update();loadBooked();setInterval(loadBooked,60000);
 </script>
 </body>
 </html>
