@@ -2,6 +2,10 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-61DRF41NCK"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-61DRF41NCK');</script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>مزرعة عيون بغداد الترفيهية — اليوسفية</title>
 <meta name="description" content="مزرعة عيون بغداد الترفيهية في اليوسفية: مسبح كبير ومسبح أطفال، بيت مؤثث، ملعب خماسي، ألعاب وشواية. للحجز 07747982110">
@@ -639,7 +643,7 @@ $('#bookForm').addEventListener('submit',async e=>{
   $('#pmAmount').textContent=pr.total;
   $('#pmPay').innerHTML=PAY.map(([t,v])=>`<div class="pm-row"><div><b>${t}</b><div class="num">${v}</div></div><button type="button" class="copy" data-copy="${v}">نسخ</button></div>`).join('');
   $('#pmWa').href='https://wa.me/'+WA+'?text='+encodeURIComponent(msg);
-  $('#payModal').hidden=false;document.body.style.overflow='hidden';
+  $('#payModal').hidden=false;try{gtag('event','booking',{value:pr.total,shift:st.shift});}catch(_){}document.body.style.overflow='hidden';
   btn.textContent='تأكيد الحجز';
   msgEl.className='small ok';msgEl.textContent='✅ انحجز موعدك مبدئياً. حوّل المبلغ وأرسل السكرين على الواتساب حتى يتثبت.';
   st.date=null;$('#locOk').checked=false;update();
