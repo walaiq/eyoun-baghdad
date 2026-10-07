@@ -206,8 +206,8 @@ input.bad{border-color:#C8463A!important}
 .loc.need{border-color:#C8463A;background:#FFF5F3}
 .chk{display:flex;gap:10px;align-items:center;font-weight:700;cursor:pointer}
 .chk input{width:22px;height:22px;min-height:0;accent-color:var(--green)}
-.pm{position:fixed;inset:0;z-index:60;background:rgba(5,18,24,.85);display:flex;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto}
-.pm[hidden]{display:none}
+.paym{position:fixed;inset:0;z-index:60;background:rgba(5,18,24,.85);display:flex;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto}
+.paym[hidden]{display:none}
 .pm-box{background:var(--sand);border-radius:26px;padding:26px;max-width:520px;width:100%;margin:auto 0;animation:fade .3s both}
 .pm-box h3{margin:10px 0 6px;font-size:28px;color:var(--teal)}
 .steps{display:flex;gap:6px;flex-wrap:wrap;font-size:13px}
@@ -420,7 +420,7 @@ input.bad{border-color:#C8463A!important}
 </a>
 
 
-<div class="pm" id="payModal" role="dialog" aria-modal="true" aria-labelledby="pmTitle" hidden>
+<div class="paym" id="payModal" role="dialog" aria-modal="true" aria-labelledby="pmTitle" hidden>
 <div class="pm-box">
 <div class="steps"><span class="done">١ الحجز ✓</span><span class="cur">٢ تحويل المبلغ</span><span>٣ إرسال السكرين</span></div>
 <h3 class="kufi" id="pmTitle">انحجز موعدك مبدئياً ✅</h3>
