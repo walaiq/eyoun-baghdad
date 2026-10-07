@@ -199,6 +199,30 @@ footer{background:#0A2A35;color:#B8C6C9;padding:40px 20px calc(110px + env(safe-
 .small{margin:0;font-size:14px;color:var(--muted);line-height:1.7}
 .small.err{color:#8E2A20}.small.ok{color:var(--green);font-weight:700}
 input.bad{border-color:#C8463A!important}
+
+.loc{background:#fff;border:1.5px solid #C9BBA2;border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;line-height:1.7}
+.loc span{color:var(--muted);font-size:14px}
+.loc .btn{background:var(--teal);color:var(--sand);min-height:44px}
+.loc.need{border-color:#C8463A;background:#FFF5F3}
+.chk{display:flex;gap:10px;align-items:center;font-weight:700;cursor:pointer}
+.chk input{width:22px;height:22px;min-height:0;accent-color:var(--green)}
+.pm{position:fixed;inset:0;z-index:60;background:rgba(5,18,24,.85);display:flex;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto}
+.pm[hidden]{display:none}
+.pm-box{background:var(--sand);border-radius:26px;padding:26px;max-width:520px;width:100%;margin:auto 0;animation:fade .3s both}
+.pm-box h3{margin:10px 0 6px;font-size:28px;color:var(--teal)}
+.steps{display:flex;gap:6px;flex-wrap:wrap;font-size:13px}
+.steps span{background:#fff;border-radius:999px;padding:6px 12px;color:var(--muted)}
+.steps .done{background:var(--green);color:#fff}.steps .cur{background:var(--gold);color:var(--ink);font-weight:700}
+.pm-sum{margin:0 0 12px;line-height:1.8;color:var(--muted)}
+.pm-amt{background:var(--teal);color:var(--sand);border-radius:16px;padding:14px 18px;margin-bottom:14px;font-size:18px}
+.pm-amt b{font-family:'Reem Kufi',Tahoma,sans-serif;font-size:32px;color:var(--gold)}
+.pm-pay{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+.pm-row{background:#fff;border-radius:14px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.pm-row b{color:var(--teal)}
+.pm-row .num{direction:ltr;font-family:'Reem Kufi',Tahoma,sans-serif;font-size:20px}
+.pm-row .copy{margin:0}
+.pm-note{background:#FFF1D6;border-radius:12px;padding:12px 14px;line-height:1.8;margin:0 0 14px}
+.pm-close{display:block;margin:12px auto 0;background:none;border:0;color:var(--muted);font:inherit;text-decoration:underline;cursor:pointer;min-height:44px}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
@@ -267,6 +291,11 @@ input.bad{border-color:#C8463A!important}
 <div class="warn" id="youthWarn" hidden>⚠️ الشباب: أقصى عدد <b>10 أشخاص</b>، وأكثر من هذا العدد ما مسموح.</div>
 <label for="p">عدد الأشخاص</label><input id="p" type="number" min="1" inputmode="numeric" placeholder="اكتب العدد">
 <div class="result" id="result" aria-live="polite"></div>
+<div class="loc" id="locBox">
+<div><b>📍 قبل الحجز: شوف موقع المزرعة</b><br><span>بغداد — اليوسفية، 20 دقيقة عن جسر الطابقين</span></div>
+<a class="btn" id="locBtn" href="https://maps.app.goo.gl/2ypUDUFJxMxUQXey7" target="_blank" rel="noopener">افتح الموقع على الخريطة</a>
+<label class="chk"><input type="checkbox" id="locOk"> شفت موقع المزرعة ومناسب إلي</label>
+</div>
 <button class="btn btn-wa" type="submit" id="bookBtn">تأكيد الحجز</button>
 <p class="small" id="formMsg" aria-live="polite"></p>
 </form>
@@ -373,7 +402,7 @@ input.bad{border-color:#C8463A!important}
 <div>
 <h2 class="kufi" style="margin:0 0 14px">موقعنا</h2>
 <p class="lead" style="margin-bottom:20px">بغداد — اليوسفية، تبعد 20 دقيقة عن جسر الطابقين.</p>
-<a class="btn" href="https://maps.app.goo.gl/ayRS4R5NxiSYYd1U7" target="_blank" rel="noopener" style="background:var(--teal);color:var(--sand)">افتح بخرائط Google</a>
+<a class="btn" href="https://maps.app.goo.gl/2ypUDUFJxMxUQXey7" target="_blank" rel="noopener" style="background:var(--teal);color:var(--sand)">افتح بخرائط Google</a>
 </div>
 <div class="ph" style="height:320px;border-radius:28px"><img src="eyoun-baghdad-site/images/garden-path.jpg" alt="حديقة المزرعة" loading="lazy"></div>
 </div>
@@ -390,6 +419,20 @@ input.bad{border-color:#C8463A!important}
 <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.6-4.8A8.5 8.5 0 1 1 8 19.6L3 21z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 .8c-1-.5-1.8-1.3-2.3-2.3l.8-1-1-2L9 9.5z"/></svg>
 </a>
 
+
+<div class="pm" id="payModal" role="dialog" aria-modal="true" aria-labelledby="pmTitle" hidden>
+<div class="pm-box">
+<div class="steps"><span class="done">١ الحجز ✓</span><span class="cur">٢ تحويل المبلغ</span><span>٣ إرسال السكرين</span></div>
+<h3 class="kufi" id="pmTitle">انحجز موعدك مبدئياً ✅</h3>
+<p id="pmSummary" class="pm-sum"></p>
+<div class="pm-amt">المبلغ المطلوب: <b id="pmAmount"></b> ألف دينار</div>
+<p style="margin:0 0 10px">حوّل المبلغ على وحدة من هذي الطرق، باسم <b>باسم حسين هادي محمد</b>:</p>
+<div class="pm-pay" id="pmPay"></div>
+<p class="pm-note">📸 بعد التحويل، خذ <b>سكرين شوت</b> للتحويل، واضغط الزر الجوه حتى ترسله إلنا على الواتساب ويتثبت حجزك.</p>
+<a class="btn btn-wa" id="pmWa" href="#" target="_blank" rel="noopener" style="width:100%">أرسل سكرين التحويل على الواتساب</a>
+<button type="button" class="pm-close" id="pmClose">إغلاق</button>
+</div>
+</div>
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="عرض الصورة">
 <button id="lbNext" aria-label="الصورة التالية">›</button>
 <img id="lbImg" alt="">
@@ -577,6 +620,7 @@ $('#bookForm').addEventListener('submit',async e=>{
   if(!name){miss.push('الاسم');$('#n').classList.add('bad');}
   if(!/^0?7\d{9}$/.test(phone.replace(/\s|-/g,''))){miss.push('رقم هاتف صحيح');$('#ph').classList.add('bad');}
   if(!n){miss.push('العدد');$('#p').classList.add('bad');}
+  if(!$('#locOk').checked){miss.push('شوف موقع المزرعة');$('#locBox').classList.add('need');}
   if(miss.length){msgEl.className='small err';msgEl.textContent='كمّل: '+miss.join('، ');return;}
   if(st.group==='youth'&&n>10)return;
   if(!isFree(st.date,st.shift)){msgEl.className='small err';msgEl.textContent='هذا الوقت محجوز، اختار وقت ثاني.';return;}
@@ -590,12 +634,21 @@ $('#bookForm').addEventListener('submit',async e=>{
       booked=j.booked||booked;
     }catch(err){btn.textContent='تأكيد الحجز';update();msgEl.className='small err';msgEl.textContent='صار خطأ بالاتصال، جرب مرة ثانية أو راسلنا واتساب.';return;}
   }
-  const msg=`مرحبا، حجزت بمزرعة عيون بغداد\nالاسم: ${name}\nالهاتف: ${phone}\nاليوم: ${WD[pr.dt.getDay()]} ${st.date}\nالشفت: ${NAMES[st.shift]}\nالمجموعة: ${grp}\nالعدد: ${n}\nالسعر: ${pr.total} ألف دينار`;
-  window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg),'_blank');
+  const msg=`مرحبا، حجزت بمزرعة عيون بغداد وحوّلت المبلغ (مرفق سكرين التحويل)\nالاسم: ${name}\nالهاتف: ${phone}\nاليوم: ${WD[pr.dt.getDay()]} ${st.date}\nالشفت: ${NAMES[st.shift]}\nالمجموعة: ${grp}\nالعدد: ${n}\nالمبلغ: ${pr.total} ألف دينار`;
+  $('#pmSummary').textContent=`${name} · ${WD[pr.dt.getDay()]} ${pr.dt.getDate()} ${MONTHS[pr.dt.getMonth()]} · ${NAMES[st.shift]} · ${grp} ${n} أشخاص`;
+  $('#pmAmount').textContent=pr.total;
+  $('#pmPay').innerHTML=PAY.map(([t,v])=>`<div class="pm-row"><div><b>${t}</b><div class="num">${v}</div></div><button type="button" class="copy" data-copy="${v}">نسخ</button></div>`).join('');
+  $('#pmWa').href='https://wa.me/'+WA+'?text='+encodeURIComponent(msg);
+  $('#payModal').hidden=false;document.body.style.overflow='hidden';
   btn.textContent='تأكيد الحجز';
-  msgEl.className='small ok';msgEl.textContent='✅ انحجز موعدك! ادفع المبلغ بإحدى طرق الدفع وأرسل سكرين التحويل على الواتساب حتى يتثبت.';
-  st.date=null;update();
+  msgEl.className='small ok';msgEl.textContent='✅ انحجز موعدك مبدئياً. حوّل المبلغ وأرسل السكرين على الواتساب حتى يتثبت.';
+  st.date=null;$('#locOk').checked=false;update();
 });
+
+$('#locBtn').addEventListener('click',()=>{$('#locOk').checked=true;$('#locBox').classList.remove('need');});
+$('#locOk').addEventListener('change',()=>$('#locBox').classList.remove('need'));
+$('#pmClose').onclick=()=>{$('#payModal').hidden=true;document.body.style.overflow='';};
+$('#pmPay').addEventListener('click',e=>{const b=e.target.closest('[data-copy]');if(!b)return;const done=()=>{b.textContent='تم ✓';b.classList.add('done');setTimeout(()=>{b.textContent='نسخ';b.classList.remove('done')},1600)};if(navigator.clipboard)navigator.clipboard.writeText(b.dataset.copy).then(done).catch(done);else done();});
 update();loadBooked();setInterval(loadBooked,60000);
 </script>
 </body>
