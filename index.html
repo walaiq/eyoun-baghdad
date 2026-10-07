@@ -182,12 +182,13 @@ footer{background:#0A2A35;color:#B8C6C9;padding:40px 20px calc(110px + env(safe-
 .half.pm{background:#F1F5F6}
 .half:hover:not(:disabled){background:#FBEFD3}
 .half.sel{background:var(--gold)!important}
+.half.h{box-shadow:inset 0 0 0 2px #E8A49B}
 .half.busy{background:repeating-linear-gradient(45deg,#E7B3AC 0 6px,#F3D2CD 6px 12px)!important;cursor:not-allowed}
 .half:disabled{cursor:not-allowed}
 .day.busyall .num{color:#8E2A20}
 .legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;font-size:14px;color:var(--muted)}
 .legend i{display:inline-block;width:16px;height:16px;border-radius:5px;vertical-align:-3px;margin-left:6px;border:1px solid #E2D7C3}
-.lg-free{background:#fff}.lg-sel{background:var(--gold)}.lg-busy{background:repeating-linear-gradient(45deg,#E7B3AC 0 4px,#F3D2CD 4px 8px)}.lg-hol{background:#fff;border-color:#C8463A!important}
+.lg-free{background:#fff}.lg-sel{background:var(--gold)}.lg-busy{background:repeating-linear-gradient(45deg,#E7B3AC 0 4px,#F3D2CD 4px 8px)}.lg-hol{background:#fff;box-shadow:inset 0 0 0 2px #E8A49B}
 .cal-hint{margin:12px 0 0;font-size:14px;line-height:1.8;color:var(--muted)}
 .picked{background:var(--teal);color:var(--sand);border-radius:14px;padding:12px 16px;font-weight:700;line-height:1.7}
 .picked.none{background:#fff;color:var(--muted);font-weight:500;border:1.5px dashed #C9BBA2}
@@ -249,7 +250,7 @@ input.bad{border-color:#C8463A!important}
 <div class="cal-wd"><span>سبت</span><span>أحد</span><span>اثنين</span><span>ثلاثاء</span><span>أربعاء</span><span>خميس</span><span>جمعة</span></div>
 <div class="cal-days" id="calDays"></div>
 <div class="legend">
-<span><i class="lg-free"></i>متاح</span><span><i class="lg-sel"></i>اختيارك</span><span><i class="lg-busy"></i>محجوز</span><span><i class="lg-hol"></i>عطلة</span>
+<span><i class="lg-free"></i>متاح</span><span><i class="lg-sel"></i>اختيارك</span><span><i class="lg-busy"></i>محجوز</span><span><i class="lg-hol"></i>شفت عطلة</span>
 </div>
 <p class="cal-hint">كل يوم مقسوم نصين: <b>الفوك صباحي</b> (9 ص – 6 م) و<b>الجوه مسائي</b> (8 م – 7 ص). اضغط على النص اللي تريده، أو اختار "يوم كامل".</p>
 </div>
@@ -336,7 +337,7 @@ input.bad{border-color:#C8463A!important}
 <div class="rule"><h3>👨‍👩‍👧 العوائل</h3>الأسعار تشمل لحد <b>15 شخص</b>. إذا العدد أكثر من 15 تنضاف <b>10 آلاف عن كل شخص</b> زيادة.</div>
 <div class="rule"><h3>🧑‍🤝‍🧑 الشباب</h3>أقصى عدد نستقبله <b>10 أشخاص</b>، وأكثر من هذا العدد ما مسموح.</div>
 </div>
-<p style="text-align:center;margin:22px 0 0;color:#D5DEDF">كل الأسعار بالدينار العراقي.</p>
+<p style="text-align:center;margin:22px 0 0;color:#D5DEDF;line-height:1.9">أيام العطل: <b style="color:var(--gold)">الخميس مسائي، الجمعة صباحي ومسائي، السبت صباحي</b>.<br>كل الأسعار بالدينار العراقي.</p>
 </div>
 </section>
 
@@ -477,7 +478,7 @@ document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return
 const Q=[
 ['شنو يشمل الحجز؟','المزرعة كاملة إلك: المسبح الكبير ومسبح الأطفال، البيت المؤثث، الجلسات، الألعاب، الملعب الخماسي، الشواية والكراج.'],
 ['شنو أوقات الشفتات؟','الشفت النهاري من 9 صباحاً إلى 6 مساءً، والشفت المسائي من 8 مساءً إلى 7 صباحاً، واليوم الكامل يشمل الشفتين.'],
-['شكد الأسعار؟','الأيام العادية: النهاري 125 ألف، المسائي 125 ألف، اليوم الكامل 250 ألف. أيام العطل: النهاري 150 ألف، المسائي 150 ألف، اليوم الكامل 300 ألف.'],
+['شكد الأسعار؟','الشفت العادي 125 ألف، وشفت العطلة 150 ألف، واليوم الكامل مجموع الشفتين. شفتات العطلة هي: الخميس مسائي، الجمعة صباحي ومسائي، والسبت صباحي.'],
 ['كم عدد الأشخاص المسموح؟','العوائل: السعر يشمل لحد 15 شخص، وإذا أكثر من 15 تنضاف 10 آلاف عن كل شخص زيادة. الشباب: أقصى عدد 10 أشخاص.'],
 ['شلون أدفع؟','عن طريق سوبر كي أو زين كاش (07709992422) أو مصرف الرافدين (7113538289) باسم باسم حسين هادي محمد، وترسل سكرين التحويل على الواتساب.'],
 ['هل المزرعة موثقة؟','إي، مزرعة عيون بغداد موثقة.'],
@@ -499,7 +500,10 @@ const st={shift:'day',group:'family',date:null};
 const today=new Date();today.setHours(0,0,0,0);
 let view=new Date(today.getFullYear(),today.getMonth(),1);
 const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-const isHol=d=>d.getDay()===5||d.getDay()===6||HOLIDAYS.includes(iso(d));
+// العطل: الخميس مسائي، الجمعة صباحي ومسائي، السبت صباحي
+const isHolShift=(d,sh)=>{const w=d.getDay();if(HOLIDAYS.includes(iso(d)))return true;return sh==='day'?(w===5||w===6):(w===4||w===5);};
+const isHol=d=>isHolShift(d,'day')||isHolShift(d,'night');
+const shiftPrice=(d,sh)=>sh==='full'?shiftPrice(d,'day')+shiftPrice(d,'night'):PRICE[isHolShift(d,sh)?'holiday':'normal'][sh];
 const isFree=(k,sh)=>{const b=booked[k]||{};return sh==='full'?!(b.day||b.night):!b[sh];};
 
 function drawCal(){
@@ -513,7 +517,7 @@ function drawCal(){
     const dt=new Date(view.getFullYear(),view.getMonth(),d),k=iso(dt),b=booked[k]||{};
     const past=dt<today, hol=isHol(dt), selD=st.date===k;
     const half=(sh,cls,lbl)=>{const busy=!!b[sh];const sel=selD&&(st.shift===sh||st.shift==='full');
-      return `<button type="button" class="half ${cls} ${busy?'busy':''} ${sel?'sel':''}" data-d="${k}" data-sh="${sh}" ${past||busy?'disabled':''} aria-label="${d} ${MONTHS[view.getMonth()]} ${lbl}${busy?' محجوز':''}"></button>`;};
+      return `<button type="button" class="half ${cls} ${busy?'busy':''} ${sel?'sel':''} ${isHolShift(dt,sh)?'h':''}" data-d="${k}" data-sh="${sh}" ${past||busy?'disabled':''} aria-label="${d} ${MONTHS[view.getMonth()]} ${lbl}${busy?' محجوز':''}"></button>`;};
     h+=`<div class="day ${past?'past':''} ${hol?'hol':''} ${k===iso(today)?'today':''} ${b.day&&b.night?'busyall':''}"><span class="num">${d}</span>${half('day','am','صباحي')}${half('night','pm','مسائي')}</div>`;
   }
   $('#calDays').innerHTML=h;
@@ -535,9 +539,11 @@ $('#segGroup').addEventListener('click',e=>{const b=e.target.closest('[data-v]')
 function price(){
   if(!st.date)return null;
   const [y,m,d]=st.date.split('-').map(Number);const dt=new Date(y,m-1,d);
-  const t=isHol(dt)?'holiday':'normal', n=parseInt($('#p').value,10)||0;
+  const hd=isHolShift(dt,'day'),hn=isHolShift(dt,'night');
+  const t=st.shift==='full'?(hd&&hn?'holiday':(hd||hn?'mixed':'normal')):(isHolShift(dt,st.shift)?'holiday':'normal'), n=parseInt($('#p').value,10)||0;
   const extra=(st.group==='family'&&n>15)?(n-15)*10:0;
-  return {t,base:PRICE[t][st.shift],extra,total:PRICE[t][st.shift]+extra,dt,n};
+  const base=shiftPrice(dt,st.shift);
+  return {t,base,extra,total:base+extra,dt,n};
 }
 function update(){
   setSeg('segShift',st.shift);setSeg('segGroup',st.group);
@@ -547,12 +553,12 @@ function update(){
   const clash=st.date&&!isFree(st.date,st.shift);
   if(!st.date){pk.className='picked none';pk.textContent='اختار يوم من التقويم';}
   else{const pr=price();pk.className='picked';
-    pk.innerHTML=`${WD[pr.dt.getDay()]} ${pr.dt.getDate()} ${MONTHS[pr.dt.getMonth()]} — ${NAMES[st.shift]}${pr.t==='holiday'?' <span style="color:var(--gold)">(سعر العطلة)</span>':''}`+(clash?'<br><span style="color:#F3B4AC">⛔ هذا الوقت محجوز، اختار وقت ثاني</span>':'');}
+    pk.innerHTML=`${WD[pr.dt.getDay()]} ${pr.dt.getDate()} ${MONTHS[pr.dt.getMonth()]} — ${NAMES[st.shift]}${pr.t==='holiday'?' <span style="color:var(--gold)">(سعر العطلة)</span>':pr.t==='mixed'?' <span style="color:var(--gold)">(نص عطلة)</span>':''}`+(clash?'<br><span style="color:#F3B4AC">⛔ هذا الوقت محجوز، اختار وقت ثاني</span>':'');}
   let ok=!!st.date&&!clash&&!youthOver;
   if(youthOver){r.className='result bad';r.innerHTML='❌ عذراً، ما نكدر نستقبل أكثر من <b>10 شباب</b>.';}
   else if(!st.date){r.className='result';r.innerHTML='<span style="color:var(--muted)">السعر يطلع هنا بعد ما تختار اليوم والعدد.</span>';}
   else{const pr=price();r.className='result';
-    r.innerHTML=`السعر: <big>${pr.total}</big> ألف دينار<br><span style="font-size:14px;color:var(--muted)">${NAMES[st.shift]} ${pr.t==='holiday'?'· يوم عطلة':'· يوم عادي'}${pr.extra?` · يشمل ${pr.extra} ألف زيادة (10 آلاف عن كل شخص فوق 15)`:''}${st.group==='family'?' · العوائل لحد 15 شخص بنفس السعر':''}</span>`;}
+    r.innerHTML=`السعر: <big>${pr.total}</big> ألف دينار<br><span style="font-size:14px;color:var(--muted)">${NAMES[st.shift]} ${pr.t==='holiday'?'· سعر العطلة':pr.t==='mixed'?'· شفت عادي + شفت عطلة':'· سعر عادي'}${pr.extra?` · يشمل ${pr.extra} ألف زيادة (10 آلاف عن كل شخص فوق 15)`:''}${st.group==='family'?' · العوائل لحد 15 شخص بنفس السعر':''}</span>`;}
   $('#bookBtn').setAttribute('aria-disabled',String(!ok));
   drawCal();
 }
