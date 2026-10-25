@@ -152,7 +152,7 @@ footer{background:#0A2A35;color:#B8C6C9;padding:40px 20px calc(110px + env(safe-
 .copy.done{background:var(--green);border-color:var(--green);color:#fff}
 .note{margin-top:22px;background:#fff;border-right:5px solid var(--gold);border-radius:14px;padding:18px 22px;line-height:1.9}
 .seg{display:flex;gap:8px;flex-wrap:wrap}
-.seg button{flex:1;white-space:nowrap;min-height:46px;border-radius:12px;border:1.5px solid #C9BBA2;background:#fff;font:inherit;font-weight:700;color:var(--teal);cursor:pointer;padding:0 10px}
+.seg button{flex:1 1 auto;white-space:nowrap;min-height:46px;border-radius:12px;border:1.5px solid #C9BBA2;background:#fff;font:inherit;font-weight:700;color:var(--teal);cursor:pointer;padding:0 10px}
 .seg button.on{background:var(--teal);color:var(--sand);border-color:var(--teal)}
 .result{border-radius:16px;padding:16px 18px;line-height:1.8;background:#fff}
 .result.bad{background:#FBE3E0;color:#8E2A20}
@@ -227,6 +227,21 @@ input.bad{border-color:#C8463A!important}
 .pm-row .copy{margin:0}
 .pm-note{background:#FFF1D6;border-radius:12px;padding:12px 14px;line-height:1.8;margin:0 0 14px}
 .pm-close{display:block;margin:12px auto 0;background:none;border:0;color:var(--muted);font:inherit;text-decoration:underline;cursor:pointer;min-height:44px}
+
+.ft{background:#0A2A35;color:#C9D4D6;padding:60px 20px calc(110px + env(safe-area-inset-bottom,0px));text-align:right;display:block}
+.ft-in{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(0,1.2fr);gap:40px}
+@media(max-width:860px){.ft-in{grid-template-columns:1fr;gap:34px}}
+.ft-name{font-size:34px;color:var(--gold)}
+.ft-brand p{margin:10px 0 0;line-height:1.9;max-width:340px}
+.ft-col h3{margin:0 0 16px;font-size:22px;color:var(--gold)}
+.ft-row{display:flex;align-items:center;gap:12px;text-decoration:none;color:#E2E9EA;padding:7px 0;min-height:44px;line-height:1.6}
+.ft-row svg{flex:none;color:var(--gold)}
+.ft-row:hover{color:var(--gold)}
+.socials{display:flex;flex-wrap:wrap;gap:10px}
+.socials a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:999px;border:1.5px solid rgba(226,176,79,.45);color:#F6D58E;text-decoration:none;transition:background .2s,color .2s}
+.socials a:hover{background:var(--gold);color:var(--ink)}
+.ft-handle{display:block;margin-top:14px;color:#8FA3A7;font-size:15px;text-align:right}
+.ft-bottom{max-width:1240px;margin:40px auto 0;padding-top:22px;border-top:1px solid rgba(226,176,79,.25);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:14px;color:#8FA3A7}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
@@ -239,7 +254,7 @@ input.bad{border-color:#C8463A!important}
 عيون بغداد
 </a>
 <div class="links">
-<a href="#book">الحجز</a><a href="#features">المرافق</a><a href="#pool">المسابح</a><a href="#house">البيت</a><a href="#shifts">الأسعار</a><a href="#payment">الدفع</a><a href="#gallery">الصور</a><a href="#location">الموقع</a>
+<a href="#book">الحجز</a><a href="#features">المرافق</a><a href="#pool">المسابح</a><a href="#house">البيت</a><a href="#shifts">الأسعار</a><a href="#payment">الدفع</a><a href="#gallery">الصور</a><a href="#location">الموقع</a><a href="#contact">تواصل</a>
 </div>
 <a class="btn btn-gold phone" href="tel:07747982110">0774 798 2110</a>
 </nav>
@@ -280,11 +295,11 @@ input.bad{border-color:#C8463A!important}
 <div class="legend">
 <span><i class="lg-free"></i>متاح</span><span><i class="lg-sel"></i>اختيارك</span><span><i class="lg-busy"></i>محجوز</span><span><i class="lg-hol"></i>شفت عطلة</span>
 </div>
-<p class="cal-hint">كل يوم مقسوم نصين: <b>الفوك صباحي</b> (9 ص – 6 م) و<b>الجوه مسائي</b> (8 م – 7 ص). اضغط على النص اللي تريده، أو اختار "يوم كامل".</p>
+<p class="cal-hint">كل يوم مقسوم نصين: <b>الفوك صباحي</b> (9 ص – 6 م) و<b>الجوه مسائي</b> (8 م – 7 ص). اضغط على النص اللي تريده، أو اختار "يوم كامل" أو <b>"شتوي"</b> (12 الظهر – 8 م) وينحجز اليوم كله.</p>
 </div>
 <form class="form" id="bookForm" novalidate>
 <label>الشفت</label>
-<div class="seg" id="segShift"><button type="button" data-v="day" class="on">☀️ صباحي</button><button type="button" data-v="night">🌙 مسائي</button><button type="button" data-v="full">يوم كامل</button></div>
+<div class="seg" id="segShift"><button type="button" data-v="day" class="on">☀️ صباحي</button><button type="button" data-v="night">🌙 مسائي</button><button type="button" data-v="full">يوم كامل</button><button type="button" data-v="winter">❄️ شتوي</button></div>
 <div class="picked" id="picked">اختار يوم من التقويم</div>
 <div class="two">
 <div><label for="n">الاسم</label><input id="n" type="text" placeholder="اسمك الكريم" autocomplete="name"></div>
@@ -412,11 +427,31 @@ input.bad{border-color:#C8463A!important}
 </div>
 </section>
 
-<footer>
-<span class="kufi" style="font-size:26px;color:var(--gold)">مزرعة عيون بغداد الترفيهية</span>
-<span>للحجز والاستفسار: <a href="tel:07747982110" style="color:var(--sand);direction:ltr;display:inline-block">07747982110</a> · واتساب على نفس الرقم</span>
-<span style="font-size:14px">#مزرعة_للإيجار #مزرعة_عيون_بغداد #عيون_بغداد</span>
-<span style="font-size:13px">© <span id="yr"></span> مزرعة عيون بغداد</span>
+<footer class="ft" id="contact">
+<div class="ft-in">
+<div class="ft-brand">
+<span class="kufi ft-name">عيون بغداد</span>
+<p>مزرعة ترفيهية خاصة باليوسفية: مسبح كبير ومسبح أطفال، بيت مؤثث، ملعب خماسي وشواية.</p>
+</div>
+<div class="ft-col">
+<h3 class="kufi">معلومات التواصل</h3>
+<a class="ft-row" href="https://maps.app.goo.gl/2ypUDUFJxMxUQXey7" target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span>اليوسفية، بغداد، العراق — 20 دقيقة عن جسر الطابقين</span></a>
+<a class="ft-row" href="tel:07747982110"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span dir="ltr">0774 798 2110</span></a>
+</div>
+<div class="ft-col">
+<h3 class="kufi">تابعنا</h3>
+<div class="socials">
+<a href="https://www.instagram.com/eeyesofbaghdad" target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg><span>انستغرام</span></a>
+<a href="https://www.facebook.com/share/1KS7GUHiQy/" target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h-2.5A3.5 3.5 0 0 0 9 6.5V9H6.5v3.5H9V21h3.5v-8.5H15l.5-3.5h-3V7a1 1 0 0 1 1-1H15z"/></svg><span>فيسبوك</span></a>
+<a href="https://www.tiktok.com/@eeyesofbaghdad" target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.5 2.5 2.5 4.5 5 4.8"/></svg><span>تيك توك</span></a>
+<a href="https://www.youtube.com/@eeyesofbaghdad" target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/></svg><span>يوتيوب</span></a>
+<a href="https://maps.app.goo.gl/2ypUDUFJxMxUQXey7" target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span>موقعنا على Google</span></a>
+</div>
+</div>
+</div>
+<div class="ft-bottom">
+<span>© <span id="yr"></span> مزرعة عيون بغداد — جميع الحقوق محفوظة</span>
+</div>
 </footer>
 
 <a class="wa-float" href="https://wa.me/9647747982110" target="_blank" rel="noopener" aria-label="راسلنا على واتساب">
@@ -471,11 +506,13 @@ const F=[
 $('#feat').innerHTML=F.map(([t,d,i])=>`<div class="card"><div class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#E2B04F" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="${i}"/></svg></div><h3>${t}</h3><p>${d}</p></div>`).join('');
 
 // shifts & prices
-const PRICE={normal:{day:125,night:125,full:250},holiday:{day:150,night:150,full:300}};
+const PRICE={normal:{day:125,night:125,full:250,winter:100},holiday:{day:150,night:150,full:300,winter:125}};
+const WHOLE=sh=>sh==='full'||sh==='winter'; // الشفتات اللي تحجز اليوم كامل
 const S=[
 {id:'day',name:'الشفت النهاري',time:'من 9 صباحاً إلى 6 مساءً',text:'يوم كامل بالمسبح والحديقة والألعاب تحت الشمس.'},
 {id:'night',name:'الشفت المسائي',time:'من 8 مساءً إلى 7 صباحاً',text:'سهرة بإضاءة المسبح والشواية، ومبيت بالبيت المؤثث.'},
-{id:'full',name:'اليوم الكامل',time:'الشفتين سوا',text:'النهاري والمسائي بحجز واحد، المزرعة إلك طول اليوم.'}
+{id:'full',name:'اليوم الكامل',time:'الشفتين سوا',text:'النهاري والمسائي بحجز واحد، المزرعة إلك طول اليوم.'},
+{id:'winter',name:'❄️ شفت الشتاء',time:'من 12 الظهر إلى 8 مساءً',text:'أوقات الشتاء الدافية، والمزرعة كلها إلك طول اليوم.'}
 ];
 let dayType='normal';
 function drawShifts(){
@@ -524,7 +561,7 @@ document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return
 // faq
 const Q=[
 ['شنو يشمل الحجز؟','المزرعة كاملة إلك: المسبح الكبير ومسبح الأطفال، البيت المؤثث، الجلسات، الألعاب، الملعب الخماسي، الشواية والكراج.'],
-['شنو أوقات الشفتات؟','الشفت النهاري من 9 صباحاً إلى 6 مساءً، والشفت المسائي من 8 مساءً إلى 7 صباحاً، واليوم الكامل يشمل الشفتين.'],
+['شنو أوقات الشفتات؟','الشفت النهاري من 9 صباحاً إلى 6 مساءً، والشفت المسائي من 8 مساءً إلى 7 صباحاً، واليوم الكامل يشمل الشفتين. وبالشتاء أكو شفت شتوي من 12 الظهر إلى 8 مساءً، وينحجز كيوم كامل، وسعره 100 ألف بالأيام العادية و125 ألف بالجمعة والسبت.'],
 ['شكد الأسعار؟','الشفت العادي 125 ألف، وشفت العطلة 150 ألف، واليوم الكامل مجموع الشفتين. شفتات العطلة هي: الخميس مسائي، الجمعة صباحي ومسائي، والسبت صباحي.'],
 ['كم عدد الأشخاص المسموح؟','العوائل: السعر يشمل لحد 15 شخص، وإذا أكثر من 15 تنضاف 10 آلاف عن كل شخص زيادة. الشباب: أقصى عدد 10 أشخاص.'],
 ['شلون أدفع؟','عن طريق سوبر كي أو زين كاش (07709992422) أو مصرف الرافدين (7113538289) باسم حسين هادي محمد، وترسل سكرين التحويل على الواتساب.'],
@@ -539,7 +576,7 @@ $('#faqList').innerHTML=Q.map(([q,a],i)=>`<details ${i===0?'open':''}><summary>$
 // ضع هنا رابط Google Apps Script بعد ما تسويه (راجع ملف google-script.txt)
 const API='https://script.google.com/macros/s/AKfycbzjREf2cCIlQ7tDdJhPI_VaN0mny9FKyNj0qSYFIuEPyyvufw9jQnyKWLGgH1XEZDHT/exec';
 const HOLIDAYS=[]; // عطل رسمية إضافية بصيغة 'YYYY-MM-DD'
-const NAMES={day:'الشفت الصباحي',night:'الشفت المسائي',full:'اليوم الكامل'};
+const NAMES={day:'الشفت الصباحي',night:'الشفت المسائي',full:'اليوم الكامل',winter:'شفت الشتاء (12 الظهر – 8 مساءً)'};
 const MONTHS=['كانون الثاني','شباط','آذار','نيسان','أيار','حزيران','تموز','آب','أيلول','تشرين الأول','تشرين الثاني','كانون الأول'];
 const WD=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
 let booked={}; // {'2026-10-08':{day:true,night:true}}
@@ -550,8 +587,9 @@ const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+Stri
 // العطل: الخميس مسائي، الجمعة صباحي ومسائي، السبت صباحي
 const isHolShift=(d,sh)=>{const w=d.getDay();if(HOLIDAYS.includes(iso(d)))return true;return sh==='day'?(w===5||w===6):(w===4||w===5);};
 const isHol=d=>isHolShift(d,'day')||isHolShift(d,'night');
-const shiftPrice=(d,sh)=>sh==='full'?shiftPrice(d,'day')+shiftPrice(d,'night'):PRICE[isHolShift(d,sh)?'holiday':'normal'][sh];
-const isFree=(k,sh)=>{const b=booked[k]||{};return sh==='full'?!(b.day||b.night):!b[sh];};
+// الشتوي (12 الظهر – 8 م) وقته نهاري، فسعر العطلة بالجمعة والسبت
+const shiftPrice=(d,sh)=>sh==='winter'?PRICE[isHolShift(d,'day')?'holiday':'normal'].winter:sh==='full'?shiftPrice(d,'day')+shiftPrice(d,'night'):PRICE[isHolShift(d,sh)?'holiday':'normal'][sh];
+const isFree=(k,sh)=>{const b=booked[k]||{};return WHOLE(sh)?!(b.day||b.night):!b[sh];};
 
 function drawCal(){
   $('#calTitle').textContent=MONTHS[view.getMonth()]+' '+view.getFullYear();
@@ -563,7 +601,7 @@ function drawCal(){
   for(let d=1;d<=n;d++){
     const dt=new Date(view.getFullYear(),view.getMonth(),d),k=iso(dt),b=booked[k]||{};
     const past=dt<today, hol=isHol(dt), selD=st.date===k;
-    const half=(sh,cls,lbl)=>{const busy=!!b[sh];const sel=selD&&(st.shift===sh||st.shift==='full');
+    const half=(sh,cls,lbl)=>{const busy=!!b[sh];const sel=selD&&(st.shift===sh||WHOLE(st.shift));
       return `<button type="button" class="half ${cls} ${busy?'busy':''} ${sel?'sel':''} ${isHolShift(dt,sh)?'h':''}" data-d="${k}" data-sh="${sh}" ${past||busy?'disabled':''} aria-label="${d} ${MONTHS[view.getMonth()]} ${lbl}${busy?' محجوز':''}"></button>`;};
     h+=`<div class="day ${past?'past':''} ${hol?'hol':''} ${k===iso(today)?'today':''} ${b.day&&b.night?'busyall':''}"><span class="num">${d}</span>${half('day','am','صباحي')}${half('night','pm','مسائي')}</div>`;
   }
@@ -573,7 +611,7 @@ $('#calPrev').onclick=()=>{view=new Date(view.getFullYear(),view.getMonth()-1,1)
 $('#calNext').onclick=()=>{view=new Date(view.getFullYear(),view.getMonth()+1,1);drawCal();};
 $('#calDays').addEventListener('click',e=>{const b=e.target.closest('.half');if(!b||b.disabled)return;
   const k=b.dataset.d, sh=b.dataset.sh;
-  if(st.shift==='full'&&isFree(k,'full')){st.date=k;}
+  if(WHOLE(st.shift)&&isFree(k,st.shift)){st.date=k;}
   else{st.shift=sh;st.date=k;}
   if(!isFree(st.date,st.shift)){st.shift=sh;}
   update();});
@@ -587,7 +625,7 @@ function price(){
   if(!st.date)return null;
   const [y,m,d]=st.date.split('-').map(Number);const dt=new Date(y,m-1,d);
   const hd=isHolShift(dt,'day'),hn=isHolShift(dt,'night');
-  const t=st.shift==='full'?(hd&&hn?'holiday':(hd||hn?'mixed':'normal')):(isHolShift(dt,st.shift)?'holiday':'normal'), n=parseInt($('#p').value,10)||0;
+  const t=st.shift==='winter'?(hd?'holiday':'normal'):WHOLE(st.shift)?(hd&&hn?'holiday':(hd||hn?'mixed':'normal')):(isHolShift(dt,st.shift)?'holiday':'normal'), n=parseInt($('#p').value,10)||0;
   const extra=(st.group==='family'&&n>15)?(n-15)*10:0;
   const base=shiftPrice(dt,st.shift);
   return {t,base,extra,total:base+extra,dt,n};
