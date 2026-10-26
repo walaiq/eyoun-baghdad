@@ -674,6 +674,8 @@ $('#bookForm').addEventListener('submit',async e=>{
       const r=await fetch(API+'?'+q);const j=await r.json();
       if(!j.ok){booked=j.booked||booked;btn.textContent='تأكيد الحجز';update();msgEl.className='small err';msgEl.textContent='⛔ عذراً، هذا الوقت انحجز قبل شوية. اختار وقت ثاني.';return;}
       booked=j.booked||booked;
+      // نبلغ الإدارة على تيليگرام (عن طريق بوت المزرعة)
+      try{fetch('https://farm-bo.onrender.com/site-booking',{method:'POST',mode:'no-cors',keepalive:true,headers:{'Content-Type':'text/plain'},body:JSON.stringify({date:st.date,shift:st.shift,name,phone,group:grp,count:n,price:pr.total})});}catch(_){}
     }catch(err){btn.textContent='تأكيد الحجز';update();msgEl.className='small err';msgEl.textContent='صار خطأ بالاتصال، جرب مرة ثانية أو راسلنا واتساب.';return;}
   }
   const msg=`مرحبا، حجزت بمزرعة عيون بغداد وحوّلت المبلغ (مرفق سكرين التحويل)\nالاسم: ${name}\nالهاتف: ${phone}\nاليوم: ${WD[pr.dt.getDay()]} ${st.date}\nالشفت: ${NAMES[st.shift]}\nالمجموعة: ${grp}\nالعدد: ${n}\nالمبلغ: ${pr.total} ألف دينار`;
